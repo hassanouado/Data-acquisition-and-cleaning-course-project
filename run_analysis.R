@@ -42,4 +42,6 @@ names(x_mean_std)  = gsub('-mean', 'Mean', names(x_mean_std) )
 names(x_mean_std)  = gsub('-std', 'Std', names(x_mean_std) )
 names(x_mean_std)   <- gsub('-', '', names(x_mean_std)  )
 names(x_mean_std)   <- gsub('[()]', '', names(x_mean_std)  )
+# Combine the subject, activity, and measurement data
+data <- cbind(subject_data, y_data, x_mean_std)
 
