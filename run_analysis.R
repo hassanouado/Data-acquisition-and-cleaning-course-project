@@ -6,17 +6,19 @@
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 # Load required libraries
 library(dplyr)
- # Load training datasets
-x_train  <- read.table("UCI HAR Dataset/train/X_train.txt")
-y_train  <- read.table("UCI HAR Dataset/train/y_train.txt")
-train_subjects <- read.table("UCI HAR Dataset/train/subject_train.txt")
-#combine  x_train, y_train and train_subjects                               
-train_data = cbind(train_subjects, y_train, x_train)
-# Load test datasets
+# Step 1: Combine the training and test sets to create a single data set
+# Load the training data
+x_train <- read.table("UCI HAR Dataset/train/X_train.txt")
+y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
+
+# Load the test data
 x_test <- read.table("UCI HAR Dataset/test/X_test.txt")
 y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
-test_subjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
-# combine x_test,y_test and test_subjects
-test_data = cbind(test_subjects , y_test , x_test )
-# merge train and test datasets
-dataAll<- rbind(train_data, test_data )
+subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+
+# Combine the training and test data
+x_data <- rbind(x_train, x_test)
+y_data <- rbind(y_train, y_test)
+subject_data <- rbind(subject_train, subject_test)
+
