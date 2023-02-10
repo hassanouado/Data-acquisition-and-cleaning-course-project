@@ -33,3 +33,13 @@ activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 
 # Replace the activity IDs with descriptive activity names
 y_data[, 1] <- activity_labels[y_data[, 1], 2]
+# Step 4: Label the data set appropriately with the names of the descriptive variables
+# Assign descriptive variable names
+names(subject_data) <- "subject"
+names(y_data) <- "activity"
+names(x_mean_std) <- features[mean_std_index, 2]
+names(x_mean_std)  = gsub('-mean', 'Mean', names(x_mean_std) )
+names(x_mean_std)  = gsub('-std', 'Std', names(x_mean_std) )
+names(x_mean_std)   <- gsub('-', '', names(x_mean_std)  )
+names(x_mean_std)   <- gsub('[()]', '', names(x_mean_std)  )
+
