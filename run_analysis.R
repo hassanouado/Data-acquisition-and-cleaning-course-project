@@ -21,4 +21,15 @@ subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
 x_data <- rbind(x_train, x_test)
 y_data <- rbind(y_train, y_test)
 subject_data <- rbind(subject_train, subject_test)
+# Step 2: Extract measurements on the mean and standard deviation for each measurement
+# Load the features data
+features <- read.table("UCI HAR Dataset/features.txt")
+# Extract the mean and standard deviation measurements
+mean_std_index <- grep("mean\\(\\)|std\\(\\)", features[, 2])
+x_mean_std <- x_data[, mean_std_index]
+# Step 3: Use descriptive activity names to name the activities in the dataset
+# Load the activity labels data
+activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 
+# Replace the activity IDs with descriptive activity names
+y_data[, 1] <- activity_labels[y_data[, 1], 2]
