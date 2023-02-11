@@ -48,3 +48,4 @@ data <- cbind(subject_data, y_data, x_mean_std)
 tidy_data <- data %>%
   group_by(activity, subject) %>%
   summarise_all(mean)
+write.table(alldata,"tidy_data.txt",row.names = FALSE, quote = FALSE)
