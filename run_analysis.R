@@ -45,5 +45,6 @@ names(x_mean_std)   <- gsub('[()]', '', names(x_mean_std)  )
 # Combine the subject, activity, and measurement data
 data <- cbind(subject_data, y_data, x_mean_std)
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-tidyData <- data %>%
-  group_by(activity, subject)
+tidy_data <- data %>%
+  group_by(activity, subject) %>%
+  summarise_all(mean)
